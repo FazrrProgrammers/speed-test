@@ -1,53 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Fast Speed Test Clone</title>
+  <title>FastTest - Speed Test</title>
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      color: #222;
+      font-family: 'Arial', sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
+      background: #f9f9f9;
+      color: #222;
+      text-align: center;
     }
-
     h1 {
-      font-size: 4rem;
-      margin: 0;
+      font-size: 2.5rem;
+      margin-bottom: 30px;
     }
-
     #speed {
-      font-size: 5rem;
+      font-size: 4rem;
       font-weight: bold;
-      margin: 20px 0;
     }
-
     #unit {
-      font-size: 2rem;
+      font-size: 1.5rem;
     }
-
     #status {
+      margin-top: 20px;
       font-size: 1rem;
-      color: #666;
+      color: #888;
     }
   </style>
 </head>
 <body>
-  <h1>Kecepatan Anda</h1>
+  <h1>FastTest</h1>
   <div id="speed">0.00</div>
   <div id="unit">Mbps</div>
-  <div id="status">Mengukur kecepatan download...</div>
+  <div id="status">Sedang mengukur kecepatan...</div>
 
   <script>
     const speedEl = document.getElementById('speed');
     const statusEl = document.getElementById('status');
+
     const fileSizeInBytes = 10 * 1024 * 1024; // 10MB
-    const downloadUrl = "https://speed.hetzner.de/10MB.bin";
+    const downloadUrl = "https://proof.ovh.net/files/10Mb.dat"; // aman & public
 
     function animateSpeed(current, target) {
       let step = (target - current) / 30;
@@ -75,13 +73,12 @@
           animateSpeed(0, speedMbps);
           statusEl.textContent = "Selesai";
         })
-        .catch(err => {
+        .catch(() => {
           speedEl.textContent = "0.00";
           statusEl.textContent = "Gagal mengukur kecepatan.";
         });
     }
 
-    // Mulai otomatis saat load
     window.onload = startTest;
   </script>
 </body>
